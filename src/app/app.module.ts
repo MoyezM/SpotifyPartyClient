@@ -17,6 +17,7 @@ import {
 } from '@angular/material';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { QueueComponent } from './queue/queue.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,8 @@ import { QueueComponent } from './queue/queue.component';
     MatIconModule,
     MatListModule,
     MatProgressBarModule,
+    ReactiveFormsModule,
+    FormsModule
 
   ],
   providers: [],
