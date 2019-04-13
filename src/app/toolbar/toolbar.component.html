@@ -10,9 +10,9 @@
   </mat-expansion-panel-header>
 
   <div>
-    <form class="search">
+    <form (ngSubmit)="onSubmit()" class="search">
       <mat-form-field class="search">
-        <input matInput placeholder="Search">
+        <input type="text" [formControl]="songName" matInput placeholder="Search">
       </mat-form-field>
     </form>
   </div>
