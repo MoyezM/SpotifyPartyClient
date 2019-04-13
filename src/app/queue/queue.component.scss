@@ -1,0 +1,30 @@
+.card {
+    margin-top: 1rem;
+}
+
+.subcard {
+    height: 70px;
+}
+
+.container-col {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.container-row {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.artist {
+    margin-top: 1rem;
+    color: grey;
+    font-size: 20;
+}
+
+.song {
+    font-size: 24px;
+}

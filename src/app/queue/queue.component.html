@@ -1,3 +1,13 @@
-<p>
-  queue works!
-</p>
+<mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Queue</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngFor="let song of songResultName">
+      <mat-card class="subcard">
+        <div class="container-col">
+          <div class="song">{{song.song}}</div>
+          <div class="artist">{{song.artist}}</div>
+        </div>
+      </mat-card>
+    </mat-card-content>
+</mat-card>

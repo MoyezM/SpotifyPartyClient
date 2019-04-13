@@ -33,7 +33,11 @@ import { QueueComponent } from './queue/queue.component';
     MatToolbarModule,
     MatInputModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatProgressBarModule,
 
   ],
   providers: [],
