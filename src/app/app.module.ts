@@ -13,15 +13,18 @@ import {
   MatInputModule,
   MatProgressBarModule,
   MatCardModule,
+  MatExpansionModule
 } from '@angular/material';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { QueueComponent } from './queue/queue.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     SearchComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    QueueComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     AppRoutingModule,
     MatToolbarModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule
 
   ],
   providers: [],
