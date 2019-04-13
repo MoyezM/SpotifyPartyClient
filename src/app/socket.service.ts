@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
+import { Observable } from 'rxjs';
+import * as Rx from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -8,6 +10,25 @@ export class SocketService {
 
   constructor() {
     this.connect();
+    this.onSongResult$().subscribe((result) => {
+      console.log(result);
+    });
+  }
+
+
+  onSongResult$() {
+    let observable = new Observable(observer => {
+      this.socket.on('songResults', (songResults) => {
+        observer.next(songResults);
+      });
+    });
+
+    let observer =  {
+      next: (songResults) => {
+        return songResults;
+      }
+    };
+    return Rx.Subject.create(observer, observable);
   }
 
   connect() {
