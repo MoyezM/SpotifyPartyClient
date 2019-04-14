@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  songResults;
+
+  constructor(private socket: SocketService) { }
 
   ngOnInit() {
+    this.socket.onSongResult$().subscribe((results) => {
+      console.log(results);
+      this.songResults = results.map((song) => {
+        let result = {
+          song: song.name,
+          artist: song.album.artists[0].name,
+          uri: song.uri
+        };
+        return result;
+      });
+      console.log(this.songResults);
+    });
+  }
+
+  onClick(event) {
+    console.log(event);
   }
 
 }
