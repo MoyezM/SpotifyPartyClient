@@ -18,6 +18,7 @@ import {
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { QueueComponent } from './queue/queue.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { EllipsisPipe } from './ellipsis.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MainComponent,
     SearchComponent,
     ToolbarComponent,
-    QueueComponent
+    QueueComponent,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule,
