@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../socket.service';
 
@@ -16,7 +17,7 @@ export class SearchComponent implements OnInit {
     this.socket.onSongResult$().subscribe((results) => {
       console.log(results);
       this.songResults = results.map((song) => {
-        let result = {
+        const result = {
           song: song.name,
           artist: song.album.artists[0].name,
           uri: song.uri
@@ -27,8 +28,19 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  onClick(event) {
-    console.log(event);
+  onClick(song) {
+    this.socket.addToQueue(song);
+    this.songResults = this.songResults.filter((songResult) => {
+      console.log(songResult.song);
+      console.log(song.song)
+      if (songResult.song === song.song) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+    console.log(this.songResults);
+    console.log(song);
   }
 
 }

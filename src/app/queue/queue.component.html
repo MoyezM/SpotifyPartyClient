@@ -5,7 +5,7 @@
     <mat-card-content *ngFor="let song of songResultName">
       <mat-card class="subcard">
         <div class="container-col">
-          <div class="song">{{song.song}}</div>
+          <div class="song">{{song.song | ellipsis}}</div>
           <div class="artist">{{song.artist}}</div>
         </div>
       </mat-card>
