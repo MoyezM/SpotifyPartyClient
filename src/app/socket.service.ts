@@ -7,12 +7,17 @@ import * as Rx from 'rxjs';
 })
 export class SocketService {
   private socket;
+  
+  // queue;
 
   constructor() {
     this.connect();
     this.onSongResult$().subscribe((result) => {
       console.log(result);
     });
+    // this.onUpdateQueue$().subscribe((queue) => {
+    //   this.queue = queue;
+    // })
   }
 
 
@@ -31,6 +36,21 @@ export class SocketService {
     return Rx.Subject.create(observer, observable);
   }
 
+  onUpdateQueue$() {
+    let observable = new Observable(observer => {
+      this.socket.on('queueUpdated', (queue) => {
+        observer.next(queue);
+      });
+    });
+
+    let observer =  {
+      next: (queue) => {
+        return queue;
+      }
+    };
+    return Rx.Subject.create(observer, observable);
+  }
+
   connect() {
     console.log(window.location.host);
     const url = window.location.host;
@@ -44,6 +64,14 @@ export class SocketService {
   }
 
   getSongs(songQuery) {
-    this.socket.emit('getSong', songQuery)
+    this.socket.emit('getSong', songQuery);
+  }
+
+  addToQueue(song) {
+    this.socket.emit('addToQueue', song);
+  }
+
+  getQueue() {
+    this.socket.emit('getQueue');
   }
 }
