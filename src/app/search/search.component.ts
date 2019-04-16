@@ -20,7 +20,8 @@ export class SearchComponent implements OnInit {
         const result = {
           song: song.name,
           artist: song.album.artists[0].name,
-          uri: song.uri
+          uri: song.uri,
+          votes: 0,
         };
         return result;
       });
@@ -32,7 +33,7 @@ export class SearchComponent implements OnInit {
     this.socket.addToQueue(song);
     this.songResults = this.songResults.filter((songResult) => {
       console.log(songResult.song);
-      console.log(song.song)
+      console.log(song.song);
       if (songResult.song === song.song) {
         return false;
       } else {

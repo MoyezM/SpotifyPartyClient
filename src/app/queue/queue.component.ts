@@ -14,6 +14,7 @@ export class QueueComponent implements OnInit {
   constructor(private socket: SocketService) {
     this.socket.getQueue();
     this.socket.onUpdateQueue$().subscribe((queue) => {
+      console.log(queue);
       this.songResultName = queue;
     });
   }
