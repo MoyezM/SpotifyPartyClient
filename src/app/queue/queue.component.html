@@ -1,15 +1,25 @@
 <mat-card class="card">
-    <mat-card-header>
-      <mat-card-title>Queue</mat-card-title>
-    </mat-card-header>
-    <mat-card-content *ngFor="let song of songResultName">
-      <mat-card class="subcard">
-        <div class="container-col">
-          <div class="song">{{song.song | ellipsis}}</div>
-          <div class="artist">{{song.artist}}</div>
+  <mat-card-header>
+    <mat-card-title>Queue</mat-card-title>
+  </mat-card-header>
+  <mat-card-content *ngFor="let song of songResultName">
+    <mat-card>
+      <div class="container-col">
+        <div class="song">{{song.song | ellipsis}}</div>
+        <div class="artist">{{song.artist}}</div>
+      </div>
+      <div class="container-row">
+        <button mat-button (click)="onUpvote(song)">
+          <mat-icon color="primary" class="mat-18">arrow_upward</mat-icon>
+        </button>
+        <div class="votes">
+          {{song.votes}}
         </div>
-      </mat-card>
-    </mat-card-content>
-    <mat-icon color="primary" class="mat-18">arrow_upward</mat-icon>
-    <mat-icon color="primary" class="mat-18">arrow_downward</mat-icon>
+        <button mat-button (click)="onDownvote(song)">
+          <mat-icon color="primary" class="mat-18">arrow_downward</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </mat-card-content>
 </mat-card>
+

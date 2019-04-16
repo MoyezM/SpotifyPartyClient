@@ -22,4 +22,12 @@ export class QueueComponent implements OnInit {
   ngOnInit() {
   }
 
+  onUpvote(song) {
+    console.log(song);
+  }
+
+  onDownvote(song) {
+    console.log(song);
+  }
+
 }
