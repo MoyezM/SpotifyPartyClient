@@ -1,22 +1,42 @@
 <mat-card class="card">
   <mat-card-header>
-    <mat-card-title>Queue</mat-card-title>
+    <mat-card-title class="title">Queue</mat-card-title>
   </mat-card-header>
   <mat-card-content *ngFor="let song of songResultName">
-    <mat-card>
+    <mat-card class="subCard">
       <div class="container-col">
         <div class="song">{{song.song | ellipsis}}</div>
         <div class="artist">{{song.artist}}</div>
       </div>
       <div class="container-row">
         <button mat-button (click)="onUpvote(song)">
-          <mat-icon color="primary" class="mat-18">arrow_upward</mat-icon>
+          <span [ngSwitch]="votedSongsHash[song.uri] === 1">
+            <div *ngSwitchCase="true">
+              <mat-icon class="green mat-18">arrow_upward</mat-icon>
+            </div>
+            <div *ngSwitchCase="false">
+              <mat-icon class="grey mat-18">arrow_upward</mat-icon>
+            </div>
+            <div *ngSwitchDefault>
+              <mat-icon class="grey mat-18">arrow_upward</mat-icon>
+            </div>
+          </span>
         </button>
         <div class="votes">
           {{song.votes}}
         </div>
         <button mat-button (click)="onDownvote(song)">
-          <mat-icon color="primary" class="mat-18">arrow_downward</mat-icon>
+          <span [ngSwitch]="votedSongsHash[song.uri] === -1">
+            <div *ngSwitchCase="true">
+              <mat-icon class="red mat-18">arrow_downward</mat-icon>
+            </div>
+            <div *ngSwitchCase="false">
+              <mat-icon class="grey mat-18">arrow_downward</mat-icon>
+            </div>
+            <div *ngSwitchDefault>
+              <mat-icon class="grey mat-18">arrow_downward</mat-icon>
+            </div>
+          </span>
         </button>
       </div>
     </mat-card>
