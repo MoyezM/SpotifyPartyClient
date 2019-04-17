@@ -53,14 +53,12 @@ export class QueueComponent implements OnInit {
       }
     } else {
       this.votedSongsHash[song.uri] = 1;
+      this.socket.vote({
+        uri: song.uri,
+        vote: 1,
+      });
     }
     console.log(this.votedSongsHash);
-
-    this.socket.vote({
-      uri: song.uri,
-      vote:  this.votedSongsHash[song.uri],
-    });
-
   }
 
   onDownvote(song) {
@@ -78,7 +76,7 @@ export class QueueComponent implements OnInit {
           this.votedSongsHash[song.uri] = -1;
           this.socket.vote({
             uri: song.uri,
-            vote:  -1,
+            vote:  1,
           });
           break;
         }
@@ -93,6 +91,10 @@ export class QueueComponent implements OnInit {
       }
     } else {
       this.votedSongsHash[song.uri] = -1;
+      this.socket.vote({
+        uri: song.uri,
+        vote:  -1,
+      });
     }
     console.log(this.votedSongsHash);
    }
