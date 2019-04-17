@@ -71,6 +71,10 @@ export class SocketService {
     this.socket.emit('addToQueue', song);
   }
 
+  vote(voteData) {
+    this.socket.emit('vote', voteData);
+  }
+
   getQueue() {
     this.socket.emit('getQueue');
   }

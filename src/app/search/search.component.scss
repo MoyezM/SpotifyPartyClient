@@ -1,9 +1,11 @@
 .card {
     margin-top: 1rem;
+    background: #111111;
 }
 
 .subcard {
     height: 70px;
+    background: #1e1e1e;
 }
 
 .container-col {
@@ -27,5 +29,10 @@
 
 .song {
     font-size: 20px;
+    color: white;
     word-wrap: none;
+}
+
+.title {
+    color: white;
 }
