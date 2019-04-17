@@ -28,14 +28,27 @@ export class QueueComponent implements OnInit {
       switch (this.votedSongsHash[song.uri]) {
         case 1: {
           this.votedSongsHash[song.uri] = 0;
+          this.socket.vote({
+            uri: song.uri,
+            vote:  -1,
+          });
           break;
         }
         case 0: {
           this.votedSongsHash[song.uri] = 1;
+          this.socket.vote({
+            uri: song.uri,
+            vote:  1,
+          });
           break;
         }
         case -1: {
           this.votedSongsHash[song.uri] = 1;
+          this.socket.vote({
+            uri: song.uri,
+            vote:  2,
+          });
+          break;
         }
       }
     } else {
@@ -43,6 +56,10 @@ export class QueueComponent implements OnInit {
     }
     console.log(this.votedSongsHash);
 
+    this.socket.vote({
+      uri: song.uri,
+      vote:  this.votedSongsHash[song.uri],
+    });
 
   }
 
@@ -51,21 +68,32 @@ export class QueueComponent implements OnInit {
       switch (this.votedSongsHash[song.uri]) {
         case 1: {
           this.votedSongsHash[song.uri] = -1;
+          this.socket.vote({
+            uri: song.uri,
+            vote:  -2,
+          });
           break;
         }
         case 0: {
           this.votedSongsHash[song.uri] = -1;
+          this.socket.vote({
+            uri: song.uri,
+            vote:  -1,
+          });
           break;
         }
         case -1: {
           this.votedSongsHash[song.uri] = 0;
+          this.socket.vote({
+            uri: song.uri,
+            vote:  1,
+          });
+          break;
         }
       }
     } else {
       this.votedSongsHash[song.uri] = -1;
     }
     console.log(this.votedSongsHash);
-
-  }
-
+   }
 }
