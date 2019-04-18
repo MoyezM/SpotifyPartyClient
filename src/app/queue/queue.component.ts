@@ -1,3 +1,4 @@
+import { VotingService } from './../voting.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SocketService } from '../socket.service';
 
@@ -9,93 +10,27 @@ import { SocketService } from '../socket.service';
 export class QueueComponent implements OnInit {
 
   songResultName = [];
+  votedSongsHash = {};
 
-  constructor(private socket: SocketService) {
+  constructor(private socket: SocketService, private vote: VotingService) {
     this.socket.getQueue();
     this.socket.onUpdateQueue$().subscribe((queue) => {
       console.log(queue);
       this.songResultName = queue;
     });
+    this.votedSongsHash =  this.vote.votedSongsHash;
   }
 
   ngOnInit() {
   }
 
-  votedSongsHash = {}
-
   onUpvote(song) {
-    if (this.votedSongsHash[song.uri]) {
-      switch (this.votedSongsHash[song.uri]) {
-        case 1: {
-          this.votedSongsHash[song.uri] = 0;
-          this.socket.vote({
-            uri: song.uri,
-            vote:  -1,
-          });
-          break;
-        }
-        case 0: {
-          this.votedSongsHash[song.uri] = 1;
-          this.socket.vote({
-            uri: song.uri,
-            vote:  1,
-          });
-          break;
-        }
-        case -1: {
-          this.votedSongsHash[song.uri] = 1;
-          this.socket.vote({
-            uri: song.uri,
-            vote:  2,
-          });
-          break;
-        }
-      }
-    } else {
-      this.votedSongsHash[song.uri] = 1;
-      this.socket.vote({
-        uri: song.uri,
-        vote: 1,
-      });
-    }
-    console.log(this.votedSongsHash);
+    this.vote.onUpvote(song);
+    this.votedSongsHash = this.vote.votedSongsHash;
   }
 
   onDownvote(song) {
-    if (this.votedSongsHash[song.uri]) {
-      switch (this.votedSongsHash[song.uri]) {
-        case 1: {
-          this.votedSongsHash[song.uri] = -1;
-          this.socket.vote({
-            uri: song.uri,
-            vote:  -2,
-          });
-          break;
-        }
-        case 0: {
-          this.votedSongsHash[song.uri] = -1;
-          this.socket.vote({
-            uri: song.uri,
-            vote:  1,
-          });
-          break;
-        }
-        case -1: {
-          this.votedSongsHash[song.uri] = 0;
-          this.socket.vote({
-            uri: song.uri,
-            vote:  1,
-          });
-          break;
-        }
-      }
-    } else {
-      this.votedSongsHash[song.uri] = -1;
-      this.socket.vote({
-        uri: song.uri,
-        vote:  -1,
-      });
-    }
-    console.log(this.votedSongsHash);
+    this.vote.onDownvote(song);
+    this.votedSongsHash = this.vote.votedSongsHash;
    }
 }
