@@ -4,41 +4,41 @@
   </mat-card-header>
   <mat-card-content *ngFor="let song of songResultName">
     <mat-card class="subCard">
-      <div class="container-col">
-        <div class="song">{{song.song | ellipsis}}</div>
-        <div class="artist">{{song.artist}}</div>
-      </div>
-      <div class="container-row">
+      <span class="container-col">
+        <span class="song">{{song.song}}</span>
+        <span class="artist">{{song.artist}}</span>
+      </span>
+      <span class="container-row">
         <button mat-button (click)="onUpvote(song)">
           <span [ngSwitch]="votedSongsHash[song.uri] === 1">
-            <div *ngSwitchCase="true">
+            <span *ngSwitchCase="true">
               <mat-icon class="green mat-18">arrow_upward</mat-icon>
-            </div>
-            <div *ngSwitchCase="false">
+            </span>
+            <span *ngSwitchCase="false">
               <mat-icon class="grey mat-18">arrow_upward</mat-icon>
-            </div>
-            <div *ngSwitchDefault>
+            </span>
+            <span *ngSwitchDefault>
               <mat-icon class="grey mat-18">arrow_upward</mat-icon>
-            </div>
+            </span>
           </span>
         </button>
-        <div class="votes">
+        <span class="votes">
           {{song.votes}}
-        </div>
+        </span>
         <button mat-button (click)="onDownvote(song)">
           <span [ngSwitch]="votedSongsHash[song.uri] === -1">
-            <div *ngSwitchCase="true">
+            <span *ngSwitchCase="true">
               <mat-icon class="red mat-18">arrow_downward</mat-icon>
-            </div>
-            <div *ngSwitchCase="false">
+            </span>
+            <span *ngSwitchCase="false">
               <mat-icon class="grey mat-18">arrow_downward</mat-icon>
-            </div>
-            <div *ngSwitchDefault>
+            </span>
+            <span *ngSwitchDefault>
               <mat-icon class="grey mat-18">arrow_downward</mat-icon>
-            </div>
+            </span>
           </span>
         </button>
-      </div>
+      </span>
     </mat-card>
   </mat-card-content>
 </mat-card>

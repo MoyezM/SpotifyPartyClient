@@ -15,14 +15,12 @@ export class QueueComponent implements OnInit {
   constructor(private socket: SocketService, private vote: VotingService) {
     this.socket.getQueue();
     this.socket.onUpdateQueue$().subscribe((queue) => {
-      console.log(queue);
       this.songResultName = queue;
     });
     this.votedSongsHash =  this.vote.votedSongsHash;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onUpvote(song) {
     this.vote.onUpvote(song);
