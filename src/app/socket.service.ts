@@ -7,7 +7,7 @@ import * as Rx from 'rxjs';
 })
 export class SocketService {
   private socket;
-  
+
   // queue;
 
   constructor() {
@@ -22,7 +22,7 @@ export class SocketService {
 
 
   onSongResult$() {
-    let observable = new Observable(observer => {
+    const observable = new Observable(observer => {
       this.socket.on('songResults', (songResults) => {
         observer.next(songResults);
       });
@@ -37,13 +37,13 @@ export class SocketService {
   }
 
   onUpdateQueue$() {
-    let observable = new Observable(observer => {
+    const observable = new Observable(observer => {
       this.socket.on('queueUpdated', (queue) => {
         observer.next(queue);
       });
     });
 
-    let observer =  {
+    const observer =  {
       next: (queue) => {
         return queue;
       }
@@ -52,14 +52,10 @@ export class SocketService {
   }
 
   connect() {
-    console.log(window.location.host);
     const url = window.location.host;
     const urlLength = url.length;
-    console.log(urlLength)
     let socketURL = url.slice(0, urlLength - 4);
     socketURL = socketURL + '8888/';
-    console.log(socketURL);
-
     this.socket = io(socketURL);
   }
 

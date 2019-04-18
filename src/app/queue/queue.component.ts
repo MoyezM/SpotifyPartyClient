@@ -10,18 +10,17 @@ export class QueueComponent implements OnInit {
 
   songResultName = [];
 
+  votedSongsHash = {};
+
   constructor(private socket: SocketService) {
     this.socket.getQueue();
     this.socket.onUpdateQueue$().subscribe((queue) => {
-      console.log(queue);
       this.songResultName = queue;
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  votedSongsHash = {}
 
   onUpvote(song) {
     if (this.votedSongsHash[song.uri]) {
@@ -58,7 +57,6 @@ export class QueueComponent implements OnInit {
         vote: 1,
       });
     }
-    console.log(this.votedSongsHash);
   }
 
   onDownvote(song) {
@@ -96,6 +94,5 @@ export class QueueComponent implements OnInit {
         vote:  -1,
       });
     }
-    console.log(this.votedSongsHash);
    }
 }

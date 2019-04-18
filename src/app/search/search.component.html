@@ -4,10 +4,10 @@
   </mat-card-header>
   <mat-card-content *ngFor="let song of songResults">
     <mat-card (click)="onClick(song)" class="subcard">
-      <div class="container-col">
-        <div class="song">{{song.song | ellipsis}}</div>
-        <div class="artist">{{song.artist}}</div>
-      </div>
+      <span class="container-col">
+        <span class="song">{{song.song}}</span>
+        <span class="artist">{{song.artist}}</span>
+      </span>
     </mat-card>
   </mat-card-content>
 </mat-card>

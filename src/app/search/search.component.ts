@@ -15,7 +15,6 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.socket.onSongResult$().subscribe((results) => {
-      console.log(results);
       this.songResults = results.map((song) => {
         const result = {
           song: song.name,
@@ -25,23 +24,18 @@ export class SearchComponent implements OnInit {
         };
         return result;
       });
-      console.log(this.songResults);
     });
   }
 
   onClick(song) {
     this.socket.addToQueue(song);
     this.songResults = this.songResults.filter((songResult) => {
-      console.log(songResult.song);
-      console.log(song.song);
       if (songResult.song === song.song) {
         return false;
       } else {
         return true;
       }
     });
-    console.log(this.songResults);
-    console.log(song);
   }
 
 }

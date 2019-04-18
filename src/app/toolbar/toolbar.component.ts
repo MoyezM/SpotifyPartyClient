@@ -18,12 +18,10 @@ export class ToolbarComponent implements OnInit {
   }
 
   onHome() {
-    console.log('THIS IS WORKING');
     this.router.navigate(['']);
   }
 
   onSubmit() {
-    console.log(this.songName.value);
     this.socket.getSongs(this.songName.value);
     this.router.navigate(['search']);
   }
